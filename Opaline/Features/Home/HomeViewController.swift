@@ -102,6 +102,7 @@ class HomeViewController: VideosViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         title = "home.title".localized
+        navigationItem.titleView = RetroLogoView()
         AppLog.home("viewDidLoad")
         setupEmptyViews()
         setupChipBar()

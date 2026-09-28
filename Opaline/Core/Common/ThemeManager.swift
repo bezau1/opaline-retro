@@ -182,26 +182,49 @@ class ThemeManager {
         boundaryTimer = timer
     }
 
+    /// Retro palette: aged-paper cream / classic YouTube red in light mode,
+    /// a warm CRT-brown / brighter red in dark mode. Replaces the old
+    /// neutral black-and-white light/dark pair app-wide.
     private func rebuildCache() {
         let dark = isDark
         resolvedDark = dark
-        background    = dark ? .black : UIColor(white: 0.96, alpha: 1)
-        surface       = dark ? UIColor(white: 0.1, alpha: 1) : .white
-        primaryText   = dark ? .white : UIColor(white: 0.1, alpha: 1)
-        secondaryText = dark ? UIColor(white: 0.55, alpha: 1) : UIColor(white: 0.45, alpha: 1)
-        separator     = dark ? UIColor(white: 0.15, alpha: 1) : UIColor(white: 0.88, alpha: 1)
-        accent        = UIColor(red: 1, green: 0, blue: 0, alpha: 1)
+        background    = dark
+            ? UIColor(red: 0.086, green: 0.075, blue: 0.051, alpha: 1)
+            : UIColor(red: 0.949, green: 0.937, blue: 0.894, alpha: 1)
+        surface       = dark
+            ? UIColor(red: 0.129, green: 0.110, blue: 0.075, alpha: 1)
+            : .white
+        primaryText   = dark
+            ? UIColor(red: 0.945, green: 0.933, blue: 0.878, alpha: 1)
+            : UIColor(red: 0.102, green: 0.102, blue: 0.102, alpha: 1)
+        secondaryText = dark
+            ? UIColor(red: 0.655, green: 0.612, blue: 0.486, alpha: 1)
+            : UIColor(red: 0.42, green: 0.404, blue: 0.353, alpha: 1)
+        separator     = dark
+            ? UIColor(red: 0.212, green: 0.173, blue: 0.110, alpha: 1)
+            : UIColor(red: 0.847, green: 0.835, blue: 0.761, alpha: 1)
+        accent        = dark
+            ? UIColor(red: 0.878, green: 0.137, blue: 0.102, alpha: 1)
+            : UIColor(red: 0.8, green: 0.094, blue: 0.118, alpha: 1)
         durationBackground = UIColor.black.withAlphaComponent(0.8)
-        liveBadgeBackground = UIColor(red: 1, green: 0, blue: 0, alpha: 0.9)
+        liveBadgeBackground = UIColor(red: 0.8, green: 0.094, blue: 0.118, alpha: 0.9)
         thumbnailPlaceholder = dark
-            ? UIColor(white: 0.15, alpha: 1)
-            : UIColor(white: 0.85, alpha: 1)
+            ? UIColor(red: 0.141, green: 0.118, blue: 0.078, alpha: 1)
+            : UIColor(red: 0.894, green: 0.875, blue: 0.788, alpha: 1)
+        // Gold rather than blue — ties the "new" indicator to the retro
+        // gold/red duo instead of the old neutral-theme accent.
         newContentDot = dark
-            ? UIColor(red: 62 / 255, green: 166 / 255, blue: 1, alpha: 1)
-            : UIColor(red: 6 / 255, green: 95 / 255, blue: 212 / 255, alpha: 1)
-        skeletonBase    = dark ? UIColor(white: 0.13, alpha: 1) : UIColor(white: 0.88, alpha: 1)
-        skeletonShimmer = dark ? UIColor(white: 0.22, alpha: 1) : UIColor(white: 0.78, alpha: 1)
-        skeletonBlock   = dark ? UIColor(white: 0.18, alpha: 1) : UIColor(white: 0.82, alpha: 1)
+            ? UIColor(red: 0.957, green: 0.741, blue: 0.302, alpha: 1)
+            : UIColor(red: 0.827, green: 0.6, blue: 0.145, alpha: 1)
+        skeletonBase    = dark
+            ? UIColor(red: 0.141, green: 0.118, blue: 0.078, alpha: 1)
+            : UIColor(red: 0.894, green: 0.875, blue: 0.788, alpha: 1)
+        skeletonShimmer = dark
+            ? UIColor(red: 0.212, green: 0.176, blue: 0.110, alpha: 1)
+            : UIColor(red: 0.827, green: 0.8, blue: 0.682, alpha: 1)
+        skeletonBlock   = dark
+            ? UIColor(red: 0.173, green: 0.145, blue: 0.090, alpha: 1)
+            : UIColor(red: 0.855, green: 0.831, blue: 0.737, alpha: 1)
         barStyle = dark ? .black : .default
         statusBarStyle = dark ? .lightContent : .default
     }

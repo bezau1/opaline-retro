@@ -87,6 +87,8 @@ extension WatchViewController {
         applyThemeToComments(theme)
         for btn in [likeButton, dislikeButton, shareButton, saveButton, downloadButton] {
             btn.tintColor = theme.primaryText
+            btn.backgroundColor = theme.surface
+            btn.layer.borderColor = theme.separator.cgColor
         }
         playerContainer.backgroundColor = .black
         playerStatusLabel.textColor = .lightGray
@@ -140,17 +142,20 @@ extension WatchViewController {
     // MARK: - Like / Dislike
 
     func updateLikeDislikeUI() {
-        let tint = ThemeManager.shared.primaryText
-        let activeTint = ThemeManager.shared.accent
-        let secondary = ThemeManager.shared.secondaryText
-        likeButton.tintColor = currentLikeStatus == .like
-            ? activeTint : tint
-        likeCountLabel.textColor = currentLikeStatus == .like
-            ? activeTint : secondary
-        dislikeButton.tintColor = currentLikeStatus == .dislike
-            ? activeTint : tint
-        dislikeCountLabel.textColor = currentLikeStatus == .dislike
-            ? activeTint : secondary
+        let theme = ThemeManager.shared
+        let tint = theme.primaryText
+        let activeTint = theme.accent
+        let secondary = theme.secondaryText
+        let isLiked = currentLikeStatus == .like
+        let isDisliked = currentLikeStatus == .dislike
+        likeButton.tintColor = isLiked ? .white : tint
+        likeButton.backgroundColor = isLiked ? activeTint : theme.surface
+        likeButton.layer.borderColor = (isLiked ? activeTint : theme.separator).cgColor
+        likeCountLabel.textColor = isLiked ? activeTint : secondary
+        dislikeButton.tintColor = isDisliked ? .white : tint
+        dislikeButton.backgroundColor = isDisliked ? activeTint : theme.surface
+        dislikeButton.layer.borderColor = (isDisliked ? activeTint : theme.separator).cgColor
+        dislikeCountLabel.textColor = isDisliked ? activeTint : secondary
     }
 
     func handleLikeToggleResult(

@@ -206,7 +206,7 @@ extension WatchViewController {
         for item in [titleLabel, metaLabel, descriptionLabel, descriptionButton] {
             item.translatesAutoresizingMaskIntoConstraints = false
         }
-        titleLabel.font = UIFont.systemFont(ofSize: 20, weight: .semibold)
+        titleLabel.font = RetroFont.headline(20, weight: .bold)
         titleLabel.numberOfLines = 0
         cv.addSubview(titleLabel)
         metaLabel.font = UIFont.systemFont(ofSize: 13)
@@ -296,13 +296,19 @@ extension WatchViewController {
             }
             btn.setImage(rendered.withRenderingMode(.alwaysTemplate), for: .normal)
         }
-        btn.tintColor = ThemeManager.shared.primaryText
+        let theme = ThemeManager.shared
+        btn.tintColor = theme.primaryText
         btn.translatesAutoresizingMaskIntoConstraints = false
-        btn.heightAnchor.constraint(equalToConstant: 28).isActive = true
+        btn.heightAnchor.constraint(equalToConstant: 34).isActive = true
+        btn.layer.cornerRadius = 17
+        btn.layer.borderWidth = 1
+        btn.layer.borderColor = theme.separator.cgColor
+        btn.backgroundColor = theme.surface
+        btn.contentEdgeInsets = UIEdgeInsets(top: 0, left: 10, bottom: 0, right: 10)
         let label = countLabel ?? UILabel()
-        label.font = UIFont.systemFont(ofSize: 11)
+        label.font = RetroFont.headline(11, weight: .semibold)
         label.textAlignment = .center
-        label.textColor = ThemeManager.shared.secondaryText
+        label.textColor = theme.secondaryText
         label.text = staticLabel ?? "—"
         label.translatesAutoresizingMaskIntoConstraints = false
         let stack = UIStackView(arrangedSubviews: [btn, label])

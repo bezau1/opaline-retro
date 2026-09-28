@@ -186,7 +186,7 @@ extension VideoCell {
         channelAvatarView.isUserInteractionEnabled = true
         channelAvatarView.maxPixelSize = 96
         contentView.addSubview(channelAvatarView)
-        titleLabel.font = UIFont.systemFont(ofSize: 13, weight: .medium)
+        titleLabel.font = RetroFont.headline(13, weight: .semibold)
         titleLabel.numberOfLines = 2
         contentView.addSubview(titleLabel)
         channelLabel.font = UIFont.systemFont(ofSize: 11)
