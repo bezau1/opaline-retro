@@ -10,6 +10,29 @@ final class RetroLogoView: UIView {
 
     override init(frame: CGRect) {
         super.init(frame: frame)
+        let stack = buildStack()
+        addSubview(stack)
+        NSLayoutConstraint.activate([
+            stack.leadingAnchor.constraint(equalTo: leadingAnchor),
+            stack.trailingAnchor.constraint(equalTo: trailingAnchor),
+            stack.topAnchor.constraint(equalTo: topAnchor),
+            stack.bottomAnchor.constraint(equalTo: bottomAnchor)
+        ])
+        NotificationCenter.default.addObserver(
+            self,
+            selector: #selector(applyTheme),
+            name: ThemeManager.didChangeNotification,
+            object: nil
+        )
+        applyTheme()
+    }
+
+    @available(*, unavailable)
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+
+    private func buildStack() -> UIStackView {
         youLabel.text = "You"
         youLabel.font = RetroFont.headline(20, weight: .heavy)
 
@@ -32,26 +55,7 @@ final class RetroLogoView: UIView {
         stack.spacing = 3
         stack.alignment = .center
         stack.translatesAutoresizingMaskIntoConstraints = false
-        addSubview(stack)
-        NSLayoutConstraint.activate([
-            stack.leadingAnchor.constraint(equalTo: leadingAnchor),
-            stack.trailingAnchor.constraint(equalTo: trailingAnchor),
-            stack.topAnchor.constraint(equalTo: topAnchor),
-            stack.bottomAnchor.constraint(equalTo: bottomAnchor)
-        ])
-
-        NotificationCenter.default.addObserver(
-            self,
-            selector: #selector(applyTheme),
-            name: ThemeManager.didChangeNotification,
-            object: nil
-        )
-        applyTheme()
-    }
-
-    @available(*, unavailable)
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
+        return stack
     }
 
     @objc
