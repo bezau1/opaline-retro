@@ -188,6 +188,14 @@ class ThemeManager {
     private func rebuildCache() {
         let dark = isDark
         resolvedDark = dark
+        rebuildSurfaceColors(dark: dark)
+        rebuildAccentColors(dark: dark)
+        rebuildSkeletonColors(dark: dark)
+        barStyle = dark ? .black : .default
+        statusBarStyle = dark ? .lightContent : .default
+    }
+
+    private func rebuildSurfaceColors(dark: Bool) {
         background = dark
             ? UIColor(red: 0.086, green: 0.075, blue: 0.051, alpha: 1)
             : UIColor(red: 0.949, green: 0.937, blue: 0.894, alpha: 1)
@@ -203,6 +211,9 @@ class ThemeManager {
         separator = dark
             ? UIColor(red: 0.212, green: 0.173, blue: 0.110, alpha: 1)
             : UIColor(red: 0.847, green: 0.835, blue: 0.761, alpha: 1)
+    }
+
+    private func rebuildAccentColors(dark: Bool) {
         accent = dark
             ? UIColor(red: 0.878, green: 0.137, blue: 0.102, alpha: 1)
             : UIColor(red: 0.8, green: 0.094, blue: 0.118, alpha: 1)
@@ -216,6 +227,9 @@ class ThemeManager {
         newContentDot = dark
             ? UIColor(red: 0.957, green: 0.741, blue: 0.302, alpha: 1)
             : UIColor(red: 0.827, green: 0.6, blue: 0.145, alpha: 1)
+    }
+
+    private func rebuildSkeletonColors(dark: Bool) {
         skeletonBase = dark
             ? UIColor(red: 0.141, green: 0.118, blue: 0.078, alpha: 1)
             : UIColor(red: 0.894, green: 0.875, blue: 0.788, alpha: 1)
@@ -225,8 +239,6 @@ class ThemeManager {
         skeletonBlock = dark
             ? UIColor(red: 0.173, green: 0.145, blue: 0.090, alpha: 1)
             : UIColor(red: 0.855, green: 0.831, blue: 0.737, alpha: 1)
-        barStyle = dark ? .black : .default
-        statusBarStyle = dark ? .lightContent : .default
     }
 
     func applyGlobal() {
