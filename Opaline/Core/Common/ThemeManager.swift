@@ -12,22 +12,24 @@ class ThemeManager {
     static let shared = ThemeManager()
     static let didChangeNotification = Notification.Name("ThemeManagerDidChange")
 
-    // Cached resolved colors — recomputed only when theme changes
-    private(set) var background: UIColor   = .black
-    private(set) var surface: UIColor      = UIColor(white: 0.1, alpha: 1)
-    private(set) var primaryText: UIColor  = .white
-    private(set) var secondaryText: UIColor = UIColor(white: 0.55, alpha: 1)
-    private(set) var separator: UIColor    = UIColor(white: 0.15, alpha: 1)
-    private(set) var accent: UIColor       = UIColor(red: 1, green: 0, blue: 0, alpha: 1)
-    private(set) var durationBackground: UIColor = UIColor.black.withAlphaComponent(0.8)
-    private(set) var liveBadgeBackground: UIColor = UIColor(red: 1, green: 0, blue: 0, alpha: 0.9)
-    private(set) var thumbnailPlaceholder: UIColor = UIColor(white: 0.15, alpha: 1)
-    private(set) var newContentDot: UIColor = UIColor(
+    // Cached resolved colors — recomputed only when theme changes.
+    // internal(set): rebuilt from ThemeManager+Palette.swift, a separate
+    // file kept apart to stay under SwiftLint's type_body_length limit.
+    internal(set) var background: UIColor   = .black
+    internal(set) var surface: UIColor      = UIColor(white: 0.1, alpha: 1)
+    internal(set) var primaryText: UIColor  = .white
+    internal(set) var secondaryText: UIColor = UIColor(white: 0.55, alpha: 1)
+    internal(set) var separator: UIColor    = UIColor(white: 0.15, alpha: 1)
+    internal(set) var accent: UIColor       = UIColor(red: 1, green: 0, blue: 0, alpha: 1)
+    internal(set) var durationBackground: UIColor = UIColor.black.withAlphaComponent(0.8)
+    internal(set) var liveBadgeBackground: UIColor = UIColor(red: 1, green: 0, blue: 0, alpha: 0.9)
+    internal(set) var thumbnailPlaceholder: UIColor = UIColor(white: 0.15, alpha: 1)
+    internal(set) var newContentDot: UIColor = UIColor(
         red: 62 / 255, green: 166 / 255, blue: 1, alpha: 1
     )
-    private(set) var skeletonBase: UIColor    = UIColor(white: 0.13, alpha: 1)
-    private(set) var skeletonShimmer: UIColor = UIColor(white: 0.22, alpha: 1)
-    private(set) var skeletonBlock: UIColor   = UIColor(white: 0.18, alpha: 1)
+    internal(set) var skeletonBase: UIColor    = UIColor(white: 0.13, alpha: 1)
+    internal(set) var skeletonShimmer: UIColor = UIColor(white: 0.22, alpha: 1)
+    internal(set) var skeletonBlock: UIColor   = UIColor(white: 0.18, alpha: 1)
     private(set) var barStyle: UIBarStyle = .black
     private(set) var statusBarStyle: UIStatusBarStyle = .lightContent
 
@@ -193,52 +195,6 @@ class ThemeManager {
         rebuildSkeletonColors(dark: dark)
         barStyle = dark ? .black : .default
         statusBarStyle = dark ? .lightContent : .default
-    }
-
-    private func rebuildSurfaceColors(dark: Bool) {
-        background = dark
-            ? UIColor(red: 0.086, green: 0.075, blue: 0.051, alpha: 1)
-            : UIColor(red: 0.949, green: 0.937, blue: 0.894, alpha: 1)
-        surface = dark
-            ? UIColor(red: 0.129, green: 0.110, blue: 0.075, alpha: 1)
-            : .white
-        primaryText = dark
-            ? UIColor(red: 0.945, green: 0.933, blue: 0.878, alpha: 1)
-            : UIColor(red: 0.102, green: 0.102, blue: 0.102, alpha: 1)
-        secondaryText = dark
-            ? UIColor(red: 0.655, green: 0.612, blue: 0.486, alpha: 1)
-            : UIColor(red: 0.42, green: 0.404, blue: 0.353, alpha: 1)
-        separator = dark
-            ? UIColor(red: 0.212, green: 0.173, blue: 0.110, alpha: 1)
-            : UIColor(red: 0.847, green: 0.835, blue: 0.761, alpha: 1)
-    }
-
-    private func rebuildAccentColors(dark: Bool) {
-        accent = dark
-            ? UIColor(red: 0.878, green: 0.137, blue: 0.102, alpha: 1)
-            : UIColor(red: 0.8, green: 0.094, blue: 0.118, alpha: 1)
-        durationBackground = UIColor.black.withAlphaComponent(0.8)
-        liveBadgeBackground = UIColor(red: 0.8, green: 0.094, blue: 0.118, alpha: 0.9)
-        thumbnailPlaceholder = dark
-            ? UIColor(red: 0.141, green: 0.118, blue: 0.078, alpha: 1)
-            : UIColor(red: 0.894, green: 0.875, blue: 0.788, alpha: 1)
-        // Gold rather than blue — ties the "new" indicator to the retro
-        // gold/red duo instead of the old neutral-theme accent.
-        newContentDot = dark
-            ? UIColor(red: 0.957, green: 0.741, blue: 0.302, alpha: 1)
-            : UIColor(red: 0.827, green: 0.6, blue: 0.145, alpha: 1)
-    }
-
-    private func rebuildSkeletonColors(dark: Bool) {
-        skeletonBase = dark
-            ? UIColor(red: 0.141, green: 0.118, blue: 0.078, alpha: 1)
-            : UIColor(red: 0.894, green: 0.875, blue: 0.788, alpha: 1)
-        skeletonShimmer = dark
-            ? UIColor(red: 0.212, green: 0.176, blue: 0.110, alpha: 1)
-            : UIColor(red: 0.827, green: 0.8, blue: 0.682, alpha: 1)
-        skeletonBlock = dark
-            ? UIColor(red: 0.173, green: 0.145, blue: 0.090, alpha: 1)
-            : UIColor(red: 0.855, green: 0.831, blue: 0.737, alpha: 1)
     }
 
     func applyGlobal() {
